@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bash script that creates a file, and displays some strings
 
-sudo echo $$ > /var/run/myscript.pid
+echo $$ > /var/run/myscript.pid
 
 trap 'echo "Y U no love me?"' SIGINT
 trap 'echo "I hate the kill command"; sudo rm /var/run/myscript.pid; exit' SIGTERM
