@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Creates an RSA key pair
-ssh-keygen -b 4096 -f school -t RSA -N betty
-chmod 400 school
+ssh-keygen -b 4096 -f ~/.ssh/school -t RSA -N betty
+chmod 400 ~/.ssh/school
