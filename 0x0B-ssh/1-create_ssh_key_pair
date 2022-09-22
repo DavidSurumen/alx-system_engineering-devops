@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 # Creates an RSA key pair
-ssh-keygen -b 4096 -f ~/.ssh/school -t rsa -N betty
-sudo chmod 400 ~/.ssh/school
+ssh-keygen -b 4096 -f school -t rsa -N betty
+
+# Remove permissions from all users
+sudo chmod 400 school
