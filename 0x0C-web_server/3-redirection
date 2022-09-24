@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Install NGINX
+sudo apt update
+sudo apt install -y nginx
+
+# Listen on port 80 only
+sudo ufw allow 'Nginx HTTP'
+
+# backup default index
+sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+# give ownership permission to User, to enable editing
+sudo chown "$USER" /var/www/html/index.nginx-debian.html
+
+# create new index
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# setting up /redirect_me to a youtube landing page
+sudo sed -1 '24i\	rewrite ^/redirect_me https://youtube.com permanent;' /etc/nginx/sites-available/default
+
+# restart nginx
+sudo service nginx restart
