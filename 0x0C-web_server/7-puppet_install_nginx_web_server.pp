@@ -4,7 +4,8 @@ package { 'nginx':
   ensure  => 'installed'
 }
 
-file { '/var/www/html/index.nginx-debian.html':
+file { 'Hello World':
+  path    => '/var/www/html/index.nginx-debian.html',
   content => 'Hello World'
 }
 
