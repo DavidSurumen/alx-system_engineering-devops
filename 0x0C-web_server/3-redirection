@@ -16,7 +16,7 @@ sudo chown "$USER" /var/www/html/index.nginx-debian.html
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
 
 # setting up /redirect_me to a youtube landing page
-sudo sed -1 '24i\	rewrite ^/redirect_me https://youtube.com permanent;' /etc/nginx/sites-available/default
+sudo sed -i '36a rewrite ^/redirect_me https://youtube.com permanent;' /etc/nginx/sites-available/default
 
 # restart nginx
 sudo service nginx restart
