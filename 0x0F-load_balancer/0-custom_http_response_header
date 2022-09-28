@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Install NGINX and configure
+sudo apt update
+sudo apt install -y nginx
+
+# Listen on port 80 only
+sudo ufw allow 'Nginx HTTP'
+
+# backup default index
+sudo cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+# give ownership permission to website file directory, to enable editing
+sudo chown -R "$USER:$USER" /var/www/html/
+
+# create new index
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Add custom nginx response header
+sudo sed -i '/^\tlocation/a \\t\tadd_header X-Served-By "$HOSTNAME";' /etc/nginx/sites-available/default
+
+# restart nginx
+sudo service nginx restart
