@@ -4,22 +4,18 @@
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.5
 sudo apt-get -y update
-sudo apt-get install haproxy=2.5.\*
-
-sudo chmod u+w /etc/default/haproxy
-sudo echo "ENABLED=1" >> /etc/default/haproxy
+sudo apt-get -y install haproxy=2.5.\*
 
 # Listen to web_01 and web_02 servers
-sudo chown -R "$USER" /etc/haproxy
+sudo chown -R "$USER:$USER" /etc/haproxy
+
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+
 echo "
-	listen load_balancer
+listen http
 	bind *:80
-	mode http
-	balance roundrobin
-	option httpclose
-	option forwardclose
-	server 21435-web-01 44.200.42.141 check
-	server 21435-web-02 34.231.247.224 check
+	server web1 44.200.42.141:80 check
+	server web2 34.231.247.224:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
