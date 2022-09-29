@@ -23,8 +23,8 @@ frontend http_front
 
 backend web_servers
         balance roundrobin
-        server web1 44.200.42.141:80 check
-        server web2 44.200.42.141:80 check
+        server web-01 44.200.42.141:80 check
+        server web-02 34.231.247.224:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
