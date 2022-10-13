@@ -15,10 +15,10 @@ sudo chmod u-w /etc/nginx/nginx.conf
 
 # find and kill any process that maybe on port 8080, to allow reconfiguration
 k=$(sudo netstat -tulpn | grep 8080 | awk '{print $7}' | cut -d'/' -f2)  # get the name of the process
-p=$(echo $(awk -F_ '{print $1}' <<< $k))  # supposed to take the first value. there could be several. this line somehow doesn't do that though. but whatever it does, i keep it because the script works fine 😀
+p="$(awk -F_ '{print $1}' <<< "$k")"  # supposed to take the first value. there could be several. this line somehow doesn't do that though. but whatever it does, i keep it because the script works fine 😀
 
-m=$(echo $p | cut -d' ' -f 1)  # just making sure. but here is actually where the first value is extracted 🤔
-sudo pkill $m
+m=$(echo "$p" | cut -d' ' -f 1)  # just making sure. but here is actually where the first value is extracted 🤔
+sudo pkill "$m"
 
 # Configure ports.
 # modify lines which starts with 'listen' and ends with 'default_server'
