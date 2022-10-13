@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 # Configures nginx to run as nginx user, listening on port 8080
+
+# give user write permissions on the config file
 sudo chmod u+w /etc/nginx/nginx.conf
+
+# replace the line that contains the string 'user'.
 sed -i '/user/c\user nginx;' /etc/nginx/nginx.conf
+
+# remove write permissions for the file after edit.
 sudo chmod u-w /etc/nginx/nginx.conf
+
+# Configure ports.
+# modify lines which starts with 'listen' and ends with 'default_server'
+sudo sed -i '/:/b; /listen.*.default_server;/c\\tlisten 8080 default_server;' /etc/nginx/sites-enabled/default   # ' /:/b; ' excludes a match of ':' character. -> IPv4
+
+sudo sed -i '/listen.*.:.*.default_server;/c\\tlisten [::]:8080 default_server;' /etc/nginx/sites-enabled/default   # only the line containg the character ':' -> IPv6
+
 sudo service nginx restart
