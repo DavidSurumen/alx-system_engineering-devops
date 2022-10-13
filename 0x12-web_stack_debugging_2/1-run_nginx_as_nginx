@@ -4,6 +4,9 @@
 # give user write permissions on the config file
 sudo chmod u+w /etc/nginx/nginx.conf
 
+# create user 'nginx' incase the user does not already exist
+sudo useradd nginx > /dev/null 2>&1     # output of this is not needed
+
 # replace the line that contains the string 'user'.
 sed -i '/user/c\user nginx;' /etc/nginx/nginx.conf
 
