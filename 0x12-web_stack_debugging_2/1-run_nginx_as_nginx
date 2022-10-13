@@ -2,7 +2,7 @@
 # Configures nginx to run as nginx user, listening on port 8080
 
 # give user write permissions on the config file
-sudo chmod u+w /etc/nginx/nginx.conf
+sudo chmod 644 /etc/nginx/nginx.conf
 
 # create user 'nginx' incase the user does not already exist
 sudo useradd nginx > /dev/null 2>&1     # output of this is not needed
@@ -10,15 +10,8 @@ sudo useradd nginx > /dev/null 2>&1     # output of this is not needed
 # replace the line that contains the string 'user'.
 sed -i '/user/c\user nginx;' /etc/nginx/nginx.conf
 
-# remove write permissions for the file after edit.
-sudo chmod u-w /etc/nginx/nginx.conf
-
 # find and kill any process that maybe on port 8080, to allow reconfiguration
-k=$(sudo netstat -tulpn | grep 8080 | awk '{print $7}' | cut -d'/' -f2)  # get the name of the process
-p="$(awk -F_ '{print $1}' <<< "$k")"  # supposed to take the first value. there could be several. this line somehow doesn't do that though. but whatever it does, i keep it because the script works fine 😀
-
-m=$(echo "$p" | cut -d' ' -f 1)  # just making sure. but here is actually where the first value is extracted 🤔
-sudo pkill "$m"
+pkill apache2
 
 # Configure ports.
 # modify lines which starts with 'listen' and ends with 'default_server'
