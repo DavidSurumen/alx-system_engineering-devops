@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+sudo chown "$user":"$user" /etc/nginx/nginx.conf
+sudo chmod u+w /etc/nginx/nginx.conf
+sed -i '/user/c\user nginx;' /etc/nginx/nginx.conf
+sudo chmod u-w /etc/nginx/nginx.conf
+sudo service nginx restart
