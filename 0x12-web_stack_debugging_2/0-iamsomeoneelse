@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+user=$1
+if (($# == 0))
+then
+	echo "Usage: $0 <user>"
+	exit 1
+else
+	sudo -u $user whoami
+fi
