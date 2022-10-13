@@ -5,5 +5,5 @@ then
 	echo "Usage: $0 <user>"
 	exit 1
 else
-	sudo -u $user whoami
+	sudo -u "$user" whoami
 fi
