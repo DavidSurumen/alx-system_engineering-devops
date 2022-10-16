@@ -38,7 +38,7 @@ frontend http_front
         option forwardfor
         default_backend web_servers
 	bind *:443 ssl crt /etc/haproxy/certs/www.davidsurumen.tech.pem
-        redirect scheme https if !{ ssl_fc }
+        redirect scheme https code 301 if !{ ssl_fc }
 
 backend web_servers
         balance roundrobin
