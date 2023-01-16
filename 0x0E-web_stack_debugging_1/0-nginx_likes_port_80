@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 # configures nginx server to listen on port 80
+
+service apache2 stop
+apt update -y
+apt install nginx -y
 sudo sed -i 's/8080/80/' /etc/nginx/sites-enabled/default
+sudo service nginx stop
 sudo service nginx restart
