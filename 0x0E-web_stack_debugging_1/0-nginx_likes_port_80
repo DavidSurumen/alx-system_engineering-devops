@@ -4,7 +4,7 @@
 sudo lsof -ti:80 | sudo xargs kill
 sudo apt update -y
 sudo apt install nginx -y
-sudo sed -i 's/listen [[:digit:]]\+/listen 80/' /etc/nginx/sites-enabled/default
-sudo sed -i 's/ ipv6only=on;//' /etc/nginx/sites-enabled/default
+sudo sed -i '0,/listen/{s/listen [[:digit:]]\+/listen 80/}' /etc/nginx/sites-enabled/default
+sudo sed -i 's/ ipv6only=on//' /etc/nginx/sites-enabled/default
 sudo service nginx stop
 sudo service nginx restart
