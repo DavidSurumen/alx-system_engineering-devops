@@ -3,8 +3,8 @@
 
 sudo apt update
 sudo apt install lsof -y
-kill $(lsof -ti:80)
-kill $(lsof -ti:8080)
+kill "$(lsof -ti:80)"
+kill "$(lsof -ti:8080)"
 
 sudo sed -i 's/8080/80/' /etc/nginx/sites-enabled/default
 sudo sed -i 's/ ipv6only=on//' /etc/nginx/sites-enabled/default
