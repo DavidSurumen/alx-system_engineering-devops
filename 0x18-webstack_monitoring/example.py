@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
 Datadog's API
------------
+-------------t
 Get all dashboards returns "OK" response.
 
 Usage:  DD_SITE="datadoghq.com" DD_API_KEY="<DD_API_KEY>" DD_APP_KEY="<DD_APP_KEY>" ./example.py
+        Must install datadog-api-client first:  pip3 install datadog-api-client
 """
 
 if __name__ == "__main__":
